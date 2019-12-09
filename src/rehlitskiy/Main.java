@@ -1,8 +1,10 @@
 package rehlitskiy;
 
+import java.io.IOException;
+
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Film film = new Film("Аватар", "Камерон", "Сэм Уортингтон", 2009, 8.9, 201245);
         Film film1 = new Film("Война токов", "Альфонсо", "Бенедикт Камбербэтч", 2019, 7.9, 212341);
@@ -29,5 +31,10 @@ public class Main {
         films.getAllFilmsWithProtagonist("Брэд Питт");
 
         films.getDirectorByFilmName("Аватар");
+
+        SaveRead saveRead = new SaveRead();
+        saveRead.saveJson(films, "Films");
+        Films films1 = saveRead.readJson("Films");
+        films1.showInfo();
     }
 }
